@@ -1,4 +1,4 @@
-import { getEleId } from "../controllers/main";
+import { getEleId } from "../controllers/main.js";
 
 class Validation {
   // Kiểm tra người dùng có nhập ký tự vào không

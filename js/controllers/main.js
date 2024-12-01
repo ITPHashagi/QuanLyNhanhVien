@@ -27,11 +27,6 @@ const getInfoEmployee = () => {
   // Tài khoản
   isValid &=
     validation.checkEmpty(user, "tbTKNV", "Vui lòng nhập tài khoản") &&
-    validation.checkCharacterAccount(
-      user,
-      "tbTKNV",
-      "Không nhập ký tự đặc biệt!"
-    ) &&
     validation.checkIdExist(user, "tbTKNV", "Tài khoản đã tồn tại");
 
   const employee = new Employee(
@@ -108,7 +103,7 @@ getEleId("btnThemNV").onclick = function () {
   // Set localstorage
   setLocalStorage();
   // Close modal
-  document.getElementsByClassName("btnDong")[0].click();
+  getEleId("btnDong").click();
 };
 
 const handleDeleteEmployee = (taiKhoan) => {
