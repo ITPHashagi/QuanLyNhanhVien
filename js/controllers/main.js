@@ -27,7 +27,12 @@ const getInfoEmployee = () => {
   // Tài khoản
   isValid &=
     validation.checkEmpty(user, "tbTKNV", "Vui lòng nhập tài khoản") &&
-    validation.checkIdExist(user, "tbTKNV", "Tài khoản đã tồn tại");
+    validation.checkIdExist(
+      user,
+      "tbTKNV",
+      "Tài khoản đã tồn tại",
+      employeeList.arr
+    );
 
   const employee = new Employee(
     user,
@@ -62,8 +67,8 @@ const renderEmployeeList = (data) => {
                 </td>
             </tr>
         `;
-    getEleId("tableDanhSach").innerHTML = content;
   }
+  getEleId("tableDanhSach").innerHTML = content;
 };
 
 // Set localstorage

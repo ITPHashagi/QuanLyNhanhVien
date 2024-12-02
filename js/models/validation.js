@@ -66,22 +66,20 @@ class Validation {
 
   // Kiểm tra có trùng ký tự hay không
   checkIdExist(value, divID, message, listEmployee) {
-    let isExist = false;
-    for (let i = 0; i < listEmployee.length; i++) {
-      const employee = listEmployee[i];
-      // Điều kiện tài khoản có bị trùng không
-      if (employee.taiKhoan === value) {
-        isExist = true;
-        break;
-      }
-      // Nếu trùng thì lỗi
-      if (isExist) {
-        getEleId(divID).innerHTML = message;
-        getEleId(divID).style.display = "block";
-      }
-      // Không trùng thì thôi
-      getEleId(divID).innerHTML = "";
-      getEleId(divID).style.display = "none";
+    // Kiểm tra bằng điều kiện bằng some
+    const isExist = listEmployee.some(
+      (employee) => employee.taiKhoan === value
+    );
+
+    // Cập nhật giao diện
+    const displayStyle = isExist ? "block" : "none";
+    const displayMessage = isExist ? message : "";
+    const element = getEleId(divID);
+
+    if (element) {
+      // Kiểm tra tồn tại của phần tử DOM
+      element.innerHTML = displayMessage;
+      element.style.display = displayStyle;
     }
   }
 }
