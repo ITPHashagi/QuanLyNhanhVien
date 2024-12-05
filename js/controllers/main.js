@@ -24,15 +24,53 @@ const getInfoEmployee = () => {
 
   // Check validation
   let isValid = true;
+
   // Tài khoản
   isValid &=
-    validation.checkEmpty(user, "tbTKNV", "Vui lòng nhập tài khoản") &&
+    validation.checkEmpty(user, "tbTKNV", "Nhập tài khoản nhân viên!") &&
     validation.checkIdExist(
       user,
       "tbTKNV",
       "Tài khoản đã tồn tại",
       employeeList.arr
+    ) &&
+    validation.checkCharacterAccount(
+      user,
+      "tbTKNV",
+      "Không nhập ký tự đặc biệt"
+    ) &&
+    validation.checkLengthAccount(user, "tbTKNV", "Nhập từ 4-6 ký tự", 4, 6);
+
+  //Tên nhân viên
+  isValid &=
+    validation.checkEmpty(name, "tbTen", "Nhập tên nhân viên!") &&
+    validation.checkUserNameLength(
+      name,
+      "tbTen",
+      "Tên không quá 50 ký tự",
+      2,
+      50
     );
+
+  // Gmail
+  isValid &=
+    validation.checkEmpty(email, "tbEmail", "Nhập địa chỉ email") &&
+    validation.checkEmail(email, "tbEmail", "Email không hợp lệ");
+
+  // Mật khẩu
+  // isValid &=
+  //   validation.checkEmpty(password, "tbMatKhau", "Nhập mật khẩu") &&
+  //   validation.checkPassword(
+  //     password,
+  //     "tbMatKhau",
+  //     "Mật khẩu cần có chữ Hoa, chữ thường, số, ký tự đặc biệt"
+  //   ) &&
+  //   validation.checkLengthPassword(password, "tbMatKhau", "5-10 ký tự", 5, 10);
+
+  // lương cơ bản
+  isValid &= validation.checkEmpty(luongCB, "luongCB", "Nhập vào lương cơ bản");
+  // Nếu không đúng trả về null
+  if (!isValid) return null;
 
   const employee = new Employee(
     user,
@@ -44,6 +82,7 @@ const getInfoEmployee = () => {
     password,
     gioLam
   );
+  employee.callTongLuong();
   return employee;
 };
 

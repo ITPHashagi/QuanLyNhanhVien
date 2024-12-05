@@ -17,10 +17,22 @@ class Employee {
     this.password = _password;
     this.luongCB = _luongCB;
     this.gioLam = _gioLam;
+    this.tongLuong = 0;
   }
 
   // Tổng lương
-  tongLuong() {}
+  callTongLuong() {
+    if (
+      this.luongCB >= 1000000 &&
+      this.luongCB <= 20000000 &&
+      this.gioLam >= 80 &&
+      this.gioLam <= 200
+    ) {
+      // Tính lương
+      this.tongLuong = parseFloat(this.luongCB * this.gioLam);
+    }
+    return this.tongLuong;
+  }
   // Xếp loại
   xepLoai() {}
 }
