@@ -111,6 +111,18 @@ class Validation {
     getEleId(divID).style.display = "none";
     return true;
   }
+
+  // Kiểm tra có chọn chức vụ hay không
+  checkSelect(isSelect, divID, message) {
+    if (getEleId(isSelect).selectedIndex === 0) {
+      getEleId(divID).innerHTML = message;
+      getEleId(divID).style.display = "block";
+      return false;
+    }
+    getEleId(divID).innerHTML = "";
+    getEleId(divID).style.display = "none";
+    return true;
+  }
 }
 
 export default Validation;

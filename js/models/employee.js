@@ -4,7 +4,7 @@ class Employee {
     _hoVaTen,
     _email,
     _ngayLam,
-    _chucVu,
+    _chucvu,
     _luongCB,
     _password,
     _gioLam
@@ -13,7 +13,7 @@ class Employee {
     this.hoVaTen = _hoVaTen;
     this.email = _email;
     this.ngayLam = _ngayLam;
-    this.chucVu = _chucVu;
+    this.chucvu = _chucvu;
     this.luongCB = _luongCB;
     this.password = _password;
     this.gioLam = _gioLam;
@@ -23,34 +23,27 @@ class Employee {
 
   // Tổng lương
   callTongLuong() {
-    let chucVu = "";
+    const chucvu = this.chucvu;
     if (
-      chucVu === "Sếp" &&
       this.luongCB >= 1000000 &&
       this.luongCB <= 20000000 &&
       this.gioLam >= 80 &&
       this.gioLam <= 200
     ) {
-      // Tính lương
-      this.tongLuong = this.luongCB * this.gioLam * 3;
-    } else if (
-      chucVu === "Trưởng phòng" &&
-      this.luongCB >= 1000000 &&
-      this.luongCB <= 20000000 &&
-      this.gioLam >= 80 &&
-      this.gioLam <= 200
-    ) {
-      this.tongLuong = this.luongCB * this.gioLam * 2;
-    } else if (
-      chucVu === "Nhân viên" &&
-      this.luongCB >= 1000000 &&
-      this.luongCB <= 20000000 &&
-      this.gioLam >= 80 &&
-      this.gioLam <= 200
-    ) {
-      this.tongLuong = this.luongCB * this.gioLam;
+      switch (chucvu) {
+        case "Sếp":
+          this.tongLuong = this.luongCB * this.gioLam * 3;
+          break;
+        case "Trưởng phòng":
+          this.tongLuong = this.luongCB * this.gioLam * 2;
+          break;
+        case "Nhân viên":
+          this.tongLuong = this.luongCB * this.gioLam;
+        default:
+          break;
+      }
     } else {
-      return (this.tongLuong = this.luongCB);
+      this.tongLuong = this.luongCB;
     }
     return this.tongLuong;
   }

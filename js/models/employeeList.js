@@ -32,6 +32,37 @@ class EmployeeList {
       this.arr.splice(index, 1);
     }
   }
+
+  // Chỉnh sửa thông tin nhân viên
+  editEmployee(taiKhoan) {
+    const index = this.findIndexEmployee(taiKhoan);
+    if (index != -1) {
+      return this.arr[index];
+    }
+    return null;
+  }
+
+  // cập nhật nhân viên
+  updateEmployee(employee) {
+    const index = this.findIndexEmployee(employee);
+    if (index != 1) {
+      this.arr[index] = employee;
+    }
+  }
+
+  // Tìm kiếm nhân viên theo xếp loại
+  searchEmployee(keyword) {
+    let result = [];
+    for (let i = 0; i < this.arr.length; i++) {
+      let employee = this.arr[i];
+      const keywordLowerKey = keyword.toLowerCase();
+      const xepLoaiLowerKey = employee.xepLoai.toLowerCase();
+      if (xepLoaiLowerKey.indexOf(keywordLowerKey) !== -1) {
+        result.push(employee);
+      }
+    }
+    return result;
+  }
 }
 
 export default EmployeeList;
