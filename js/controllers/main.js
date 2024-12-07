@@ -18,9 +18,9 @@ const getInfoEmployee = () => {
   const email = getEleId("email").value;
   const date = getEleId("datepicker").value;
   const chucvu = getEleId("chucvu").value;
-  const luongCB = getEleId("luongCB").value;
+  const luongCB = getEleId("luongCB").value * 1;
   const password = getEleId("password").value;
-  const gioLam = getEleId("gioLam").value;
+  const gioLam = getEleId("gioLam").value * 1;
 
   // Check validation
   let isValid = true;
@@ -69,6 +69,10 @@ const getInfoEmployee = () => {
 
   // lương cơ bản
   isValid &= validation.checkEmpty(luongCB, "luongCB", "Nhập vào lương cơ bản");
+
+  // Giờ làm
+  isValid &= validation.checkEmpty(gioLam, "tbGiolam", "Nhập vào số giờ làm");
+
   // Nếu không đúng trả về null
   if (!isValid) return null;
 
@@ -83,6 +87,7 @@ const getInfoEmployee = () => {
     gioLam
   );
   employee.callTongLuong();
+  employee.callXepLoai();
   return employee;
 };
 
